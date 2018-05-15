@@ -24,7 +24,7 @@
 from ftplib import FTP
 from xml.dom import minidom
 import datetime
-import codecs
+
 
 # constants
 dates = 0
@@ -34,15 +34,16 @@ highs = 3
 briefs = 4
 rains = 5
 
+
 # variable
 xml_date_today = None
 xml_day_today = None
 
 # Arrays for data 
 # precis forecast (8 days with 6 data points)
-forecast = [[None for y in range(6)] for x in range(8)]
+forecast = [["" for y in range(6)] for x in range(8)]
 # descriptive forecast (8 days)
-descript = [None for z in range(8)]
+descript = ["" for z in range(8)]
 parse_descript = ""
 
 # Download weather forecast
@@ -61,7 +62,6 @@ for area in precis_areas:
     if area.getAttribute('description') == 'Gosford':
         periods = area.getElementsByTagName('forecast-period')
         xml_date_today = periods[0].getAttribute('start-time-local').split('T', 1)[0]
-        # TODO review date parsing format here, re hyphens 
         xml_day_today = datetime.datetime.strptime(xml_date_today, '%Y-%m-%d')
         for period in periods:
             pi = periods.index(period)
@@ -91,6 +91,7 @@ for area in precis_areas:
                     #print ("X: " + str(pi) + " , Y: " + str(rains))
             #print (forecast[pi])
             #print (forecast)
+    # Get all descriptive forecasts
     if area.getAttribute('description') == 'Central Coast':
         periods = area.getElementsByTagName('forecast-period')
         for period in periods:
@@ -110,10 +111,14 @@ precis_xml.close()
 #    print(forecast[i])
 
 
-# TODO: TEST THIS 
-# Split long forecast into multiple lines and format for SVG
-for w in range(len(descript[0].split('.'))):
-    parse_descript = parse_descript + """<tspan dy="23" x="300">""" + str(descript[0].split('.')[w]) + "</tspan>"
+# Split long forecast (for today only) into multiple lines, rudimentary text-wrap, and format for SVG text
+for w in range(len(descript[0].split('. '))):
+    split_descript = str(descript[0].split('. ')[w])
+    if len(split_descript) > 45:
+        n = split_descript.index(' ', 40)
+        parse_descript = parse_descript + """<tspan dy="22" x="300">""" + split_descript[:n] + "</tspan>" + """<tspan dy="22" x="300">""" + split_descript[(n+1):] + "</tspan>"
+    else:
+        parse_descript = parse_descript + """<tspan dy="22" x="300">""" + split_descript + "</tspan>"
     
 
 # Download observations
@@ -132,21 +137,34 @@ for station in obs_stations:
     if station.getAttribute('description') == 'Gosford':
         elements = station.getElementsByTagName('*')
         for element in elements:
-            if element.getAttribute('') == '':
+            element_type_attrib = element.getAttribute('type')
+            if element_type_attrib == 'apparent_temp':
                 continue
-    
+            elif element_type_attrib == 'air_temperature':
+                continue
+            elif element_type_attrib == 'rel-humidity':
+                continue
+            elif element_type_attrib == 'wind_dir_deg':
+                continue
+                # add 180 degrees
+            elif element_type_attrib == 'wind_spd_kmh':
+                continue
+                
+            elif element_type_attrib == 'wind_spd':
+                continue
 
 obs_xml.close()
 
-# TODO consider UV and sunrise and sunset
+
+# TODO consider UV
+# TODO consider sunrise and sunset
 
 
-#
-# Preprocess SVG
-#
+
+# Load from preprocess SVG and substitute values
 
 # Open SVG to process
-output = codecs.open('weather-script-preprocess.svg', 'r', encoding='utf-8').read()
+output = open('weather-script-preprocess.svg', 'r', encoding='utf-8').read()
 
 # Insert icons
 output = output.replace('ICON_ZERO',str("ico"+forecast[0][1])).replace('ICON_ONE',str("ico"+forecast[1][1])).replace('ICON_TWO',str("ico"+forecast[2][1])).replace('ICON_THREE',str("ico"+forecast[3][1]))
@@ -166,8 +184,17 @@ one_day = datetime.timedelta(days=1)
 days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 output = output.replace('DAY_TWO',days_of_week[(xml_day_today + 2*one_day).weekday()]).replace('DAY_THREE',days_of_week[(xml_day_today + 3*one_day).weekday()])
 
+# Insert current observations
+# feels like, actual temp, humidity, 
+
+# Insert wind direction, pointer visibility, speedkmh, speedkts
+#if wind spd 0 pointer hidden
+
+
+
 # Write output
-codecs.open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
+open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
+
 
 
 # Enhance memory recovery
