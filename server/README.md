@@ -4,7 +4,6 @@
 
 <p>install (sudo apt-get install ...)  
 <ul>
-  nginx
   <li>python3,</li>
   <li>librsvg2-bin (for rsvg-convert),</li>
   <li>pngcrush,</li>
