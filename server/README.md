@@ -14,7 +14,7 @@
 (chmod -R 777 /var/www/)</p>
 
 <p>to run every 10 mins (offset for BOM data updates) install following line in crontab (crontab -e)  
-3,13,23,33,43,53 * * * * /home/pi/weather/weather-script.sh</p>
+  3,13,23,33,43,53 * * * * /home/pi/weather/weather-script.sh</p>
 
 <p>ensure scripts are executable  
 chmod a+x weather-script.sh weather-script.py</p>
