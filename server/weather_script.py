@@ -3,17 +3,11 @@
 # Kindle Weather Display - Server-side script
 # Chris Lovell, April 2018
 #
-# Revison 0.8
-# - Added revison note
-# - Improved comments
-# - Descript text wrapping bug-fix (will now cut long sentences more than just once)
+# Revison 0.9
+# - Added check to see if updated data is expected before downloading
 #
 # Inspired by the work of:
 # Matthew Petroff (http://www.mpetroff.net/) September 2012
-#
-# Updated for python3;
-# Parsing rewritten for Australian Government Bureau of Meteorology (BOM) data;
-# Additional data elements added to output
 #
 #### Notes: ####
 #
@@ -27,6 +21,7 @@
 from ftplib import FTP
 from xml.dom import minidom
 from datetime import datetime, timedelta
+from os import path
 
 # Constants
 dates = 0
@@ -44,49 +39,79 @@ windkmh = 4
 windkts = 5
 
 # Strings
+#
+# date string from xml
 xml_date_today = None
+# long description prepared for insertion into SVG
 parse_descript = ""
 
-# Objects
+# Objects 
+#
+# day-zero from xml date
 xml_day_today = None
+# observations xml issue-date/time
 obs_ID = None
+# forecast xml issue-date/time
 forecast_ID = None
+# date/time now for image creation date/time, 
 img_ID = datetime.now()
 
-# Arrays for data 
-# precis (short) forecast (8 days with 6 data points)
+# Data lists (arrays) 
+#
+# short form forecast (8 days with 6 data points)
 forecast = [["" for y in range(6)] for x in range(8)]
 # long descriptive forecast (8 days)
 descript = ["" for z in range(8)]
 # current conditions
 observations = ["" for v in range(6)]
 
-
-# Download and save weather forecast
-#
-bom = FTP('ftp2.bom.gov.au', user='anonymous', passwd='guest')
-bom.cwd('/anon/gen/fwo')
-precis_xml = open('IDN11052.xml', 'wt')
-bom.retrlines('RETR IDN11052.xml', precis_xml.write)
-precis_xml.close()
-bom.quit()
-
-
+# Check if forecast file exists
+if path.exists('IDN11052.xml'):
+    # open it
+    precis_xml = open('IDN11052.xml', 'rt')
+    # parse it
+    precis_data = minidom.parse(precis_xml)
+    # extract datetime of next due update to data
+    nritl = datetime.strptime(precis_data.getElementsByTagName('next-routine-issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+10:00')
+    # if current time is after next due update
+    if img_ID > nritl:
+        # Download and save weather forecast
+        bom = FTP('ftp2.bom.gov.au', user='anonymous', passwd='guest')
+        bom.cwd('/anon/gen/fwo')
+        precis_xml = open('IDN11052.xml', 'wt')
+        bom.retrlines('RETR IDN11052.xml', precis_xml.write)
+        precis_xml.close()
+        bom.quit()
+    
+    
 # Parse weather data incl issue date time, forecast dates, precis descriptions, icons
 #
+# open and parse
 precis_xml = open('IDN11052.xml', 'rt')
 precis_data = minidom.parse(precis_xml)
+# find all 'area' tags
 precis_areas = precis_data.getElementsByTagName('area')
+# extract issue-date/time
 forecast_ID = datetime.strptime(precis_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+10:00')
+# for each area tag found 
 for area in precis_areas:
+    # if it's for gosford
     if area.getAttribute('description') == 'Gosford':
+        # find each day
         periods = area.getElementsByTagName('forecast-period')
+        # extract date string of first day in forecast (today)
         xml_date_today = periods[0].getAttribute('start-time-local').split('T', 1)[0]
+        # make datetime object from date
         xml_day_today = datetime.strptime(xml_date_today, '%Y-%m-%d')
+        # for each period in forecast
         for period in periods:
+            # store which period 
             pi = periods.index(period)
+            # store date/time string
             forecast[pi][dates] = period.getAttribute('start-time-local')
+            # find forecast data in period
             elements = period.getElementsByTagName('*') #*1 See Notes
+            # for each data point, check type and store accordingly
             for element in elements:
                 if element.getAttribute('type') == 'forecast_icon_code':
                     forecast[pi][icons] = str(element.firstChild.nodeValue)
@@ -130,16 +155,20 @@ for w in range(len(descript[0].split('. '))):
         
 # Split precis for rudimentary text-wrap, and format for SVG text
 #
+# for each period (day) in forecast
 for u in range(len(forecast)):
     # List containing x coordinates for displaying precis data (only interested in data for days 1-3)
     k = [0,100,300,500,0,0,0,0]
     # Remove trailing period '.'    
     precis = forecast[u][briefs][:-1]
-    # If longer than 21 characters, find next space after character position 12, then manually split at that point
-    if len(precis) > 21:
+    # If longer than 20 characters
+    if len(precis) > 20:
+        # find next space after character 12
         n = precis.index(' ', 12)
+        # split at that space, put text inside separate SVG text formating, including k[u] x coordinates, and put back into array.
         forecast[u][briefs] = '<tspan dy="17" x="' + str(k[u]) + '">' + precis[:n] + "</tspan>" + '<tspan dy="17" x="' + str(k[u]) + '">' + precis[(n+1):] + "</tspan>"
     else:
+        # put text inside single SVG text formating, including k[u] x coordinates, and put back into array.
         forecast[u][briefs] = '<tspan dy="17" x="' + str(k[u]) + '">' + precis + "</tspan>"    
 
 # Download observations
@@ -199,16 +228,18 @@ output = output.replace('DAY_TWO',days_of_week[(xml_day_today + 2*one_day).weekd
 output = output.replace('FEELS_NOW',observations[apparent]).replace('TEMP_NOW',observations[actual]).replace('HUMID_NOW',observations[humid])
 # wind direction, pointer visibility, speedkmh, speedkts
 output = output.replace('WIND_DEG',str(observations[winddir]+180)).replace('WIND_KTS',observations[windkts]).replace('WIND_KMH',str(observations[windkmh]))
-# if wind speed is zero, hide wind-vane pointer
+# If wind speed is more than zero, 
 if observations[windkmh] > 0:
+    # show wind-vane pointer
     output = output.replace('POINTER_VIS','visible')
 else:
+    # hide wind-vane pointer
     output = output.replace('POINTER_VIS','hidden')
 # Insert timestamps
 output = output.replace('IMG_GEN_DT',img_ID.strftime('%Y-%m-%d %H:%M:%S')).replace('FORECAST_DT',forecast_ID.strftime('%Y-%m-%d %H:%M:%S')).replace('OBS_DT',obs_ID.strftime('%Y-%m-%d %H:%M:%S'))
 # Write output
 open('weather-script-output.svg', 'w', encoding='utf-8').write(output)
 
-# Enhance memory recovery
+# Enhance garbage collection
 precis_data.unlink()
 obs_data.unlink()
