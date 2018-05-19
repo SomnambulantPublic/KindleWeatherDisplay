@@ -40,7 +40,8 @@ run initialisation script to stop services and run the display script the first 
 
 The device will no longer respond to device keys, to turn off hold power button for ~20 seconds  
 
-After powering back on again it will appear to behave normally at first. But the cron job will continue to run, so every 10 mins it will fetch and display the weather. It WILL respond to device keys in this state (as you have not run the initialisation script) so you can simply page-turn to resume reading.  
-Even when the Kindle appears off (long-press power button - screen is cleared) the cron job will run. But in a power-down mode wifi is disabled, so it will display the weather error message.  
-This doesn't occur in screensaver mode (idle time-out; or short-press power button)
+After powering back on again it will appear to behave normally at first. I have experience occasions I have yet to fully quatify, but it appears the cron job will continue to run, so every 10 mins it will fetch and display the weather. It WILL respond to device keys in this state (as you have not run the initialisation script) so you can simply page-turn to resume reading.  
+This has also occured in screensaver mode (idle time-out; or short-press power button), but obviously won't respond to device keys until you press the power button.  
+Even when the Kindle appears off (long-press power button - screen is cleared) the cron job has run. But in a power-down mode wifi is disabled, so it will display the weather error message.  
+The initialisation script disables the service that puts the kindle to sleep after inactivty, and the one which supports normal reader functionality.  
 To resume default Kindle operation, remove the line added to the crontab (above) and restart crond.

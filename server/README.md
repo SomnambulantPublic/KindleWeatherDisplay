@@ -19,4 +19,6 @@ ensure scripts are executable (needed for shell script; perhaps not for the pyth
 To run every 10 mins (offset for BOM data updates) install following line in crontab  
 3,13,23,33,43,53 * * * * /home/pi/weather/weather-script.sh
 
-
+## Note  
+* There are a number of data points saved into variables in the python script that aren't used anywhere, you may decide to use them.
+* There are a number of icons missing (eg snow,cyclone) and extra (eg sunrise,sunset) in the preprocess svg, you may decide to add them or use ones not in use
