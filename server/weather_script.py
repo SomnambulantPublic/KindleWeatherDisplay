@@ -66,20 +66,21 @@ descript = ["" for z in range(8)]
 observations = ["" for v in range(6)]
 
 # Check if forecast file exists
-if path.exists('IDN11052.xml'):
+if path.exists('IDN10064.xml'):
     # open it
-    precis_xml = open('IDN11052.xml', 'rt')
+    precis_xml = open('IDN10064.xml', 'rt')
     # parse it
     precis_data = minidom.parse(precis_xml)
     # extract datetime of next due update to data
-    nritl = datetime.strptime(precis_data.getElementsByTagName('next-routine-issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+10:00')
+    nritl = datetime.strptime(precis_data.getElementsByTagName('next-routine-issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+11:00')
     # if current time is after next due update
     if img_ID > nritl:
         # Download and save weather forecast
+        # Find local data http://www.bom.gov.au/catalogue/anon-ftp.shtml search 'city forecast'
         bom = FTP('ftp2.bom.gov.au', user='anonymous', passwd='guest')
         bom.cwd('/anon/gen/fwo')
-        precis_xml = open('IDN11052.xml', 'wt')
-        bom.retrlines('RETR IDN11052.xml', precis_xml.write)
+        precis_xml = open('IDN10064.xml', 'wt')
+        bom.retrlines('RETR IDN10064.xml', precis_xml.write)
         precis_xml.close()
         bom.quit()
     
@@ -87,16 +88,16 @@ if path.exists('IDN11052.xml'):
 # Parse weather data incl issue date time, forecast dates, precis descriptions, icons
 #
 # open and parse
-precis_xml = open('IDN11052.xml', 'rt')
+precis_xml = open('IDN10064.xml', 'rt')
 precis_data = minidom.parse(precis_xml)
 # find all 'area' tags
 precis_areas = precis_data.getElementsByTagName('area')
 # extract issue-date/time
-forecast_ID = datetime.strptime(precis_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+10:00')
+forecast_ID = datetime.strptime(precis_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+11:00')
 # for each area tag found 
 for area in precis_areas:
     # if it's for gosford
-    if area.getAttribute('description') == 'Gosford':
+    if area.getAttribute('description') == 'Sydney' and area.getAttribute('type') == 'location':
         # find each day
         periods = area.getElementsByTagName('forecast-period')
         # extract date string of first day in forecast (today)
@@ -124,7 +125,7 @@ for area in precis_areas:
                 elif element.getAttribute('type') == 'probability_of_precipitation':
                     forecast[pi][rains] = str(element.firstChild.nodeValue)
     # Get ALL long descriptive forecasts
-    if area.getAttribute('description') == 'Central Coast':
+    if area.getAttribute('description') == 'Sydney' and area.getAttribute('type') == 'metropolitan':
         periods = area.getElementsByTagName('forecast-period')
         for period in periods:
             pi = periods.index(period)
@@ -171,8 +172,8 @@ for u in range(len(forecast)):
         # put text inside single SVG text formating, including k[u] x coordinates, and put back into array.
         forecast[u][briefs] = '<tspan dy="17" x="' + str(k[u]) + '">' + precis + "</tspan>"    
 
-# Download observations
-#
+# Download observations 
+# Find local stations http://www.bom.gov.au/climate/data/index.shtml select data about Weather & Climate
 bom = FTP('ftp2.bom.gov.au', user='anonymous', passwd='guest')
 bom.cwd('/anon/gen/fwo')
 obs_xml = open('IDN60920.xml', 'wt')
@@ -181,13 +182,13 @@ obs_xml.close()
 bom.quit()
 
 # Parse weather observations
-#
+# 
 obs_xml = open('IDN60920.xml', 'rt')
 obs_data = minidom.parse(obs_xml)
-obs_ID = datetime.strptime(obs_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+10:00')
+obs_ID = datetime.strptime(obs_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+11:00')
 obs_stations = obs_data.getElementsByTagName('station')
 for station in obs_stations:
-    if station.getAttribute('description') == 'Gosford':
+    if station.getAttribute('description') == 'Canterbury':
         elements = station.getElementsByTagName('*')
         for element in elements:
             element_type_attrib = element.getAttribute('type')

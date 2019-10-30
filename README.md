@@ -7,11 +7,11 @@ This project builds on scipts by [Matthew Petroff's Kindle Weather Display](http
 
 [Jennifer's 1347/365 Project](http://www.shatteredhaven.com/2012/11/1347365-kindle-weather-display.html) was also very helpful as it also built on Matthew's work and stepped through some parts.
 
-However both project logs suggest installing KUAL or KITE in order to run the initiation script (which sets up for the display by killing some services), but I reccoment just logging in via ssh and running the scipt manually. 
+However both project logs suggest installing KUAL or KITE in order to run the initiation script (which sets up for the display by killing some services), but I recommend just logging in via ssh and running the scipt manually. 
 
 
 Overview:  
-A cron job on a Raspberry Pi or other device runs a bash shell script, which calls a python script which downloads weather data from the BOM, parses it and outputs it as find/replace into a preprepared svg image. The bash script then calls two other applications to convert it to a png, and reduce its size, then places it into a web-server directory.  
+A cron job on a Raspberry Pi or other device runs a bash shell script, which calls a python script that downloads weather data from the BOM, parses it and outputs it as find/replace into a preprepared svg image. The bash script then calls two other applications to convert it to a png, and reduce its size, then places it into a web-server directory.  
 On the kindle another cron job grabs the image over wifi and displays it. 
 
 You will need:  

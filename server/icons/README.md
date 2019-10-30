@@ -11,7 +11,7 @@ Under the Creative Commons licence
 
 I mixed, merged, and modified a number; and created a few myself (which I also release under Creative Commons licence)
 
-Most I have arbitrarily added invisible nodes to make the bounding box exactly 100x100 px to assist in positioning
+Most I have added invisible nodes to make the bounding box exactly 100x100 px to assist in positioning
 
 Advice should you decide to do some yourself:  
 * take your time to learn Inkscape, including all the options in the Path menu, and the difference between Objects, Paths, Strokes. Consider absolute coordinates, I think it helped;  

@@ -33,7 +33,7 @@ add following line, or similar (will run every 10 minutes, times are offset to a
 4,14,24,34,44,54 * * * * /mnt/us/weather/display-weather.sh
 
 restart crond  
-eg: $ /ect/init.d/cron restart
+eg: $ /etc/init.d/cron restart
 
 run initialisation script to stop services and run the display script the first time  
 /mnt/us/weather/init-weather.sh
