@@ -72,7 +72,7 @@ if path.exists('IDN10064.xml'):
     # parse it
     precis_data = minidom.parse(precis_xml)
     # extract datetime of next due update to data
-    nritl = datetime.strptime(precis_data.getElementsByTagName('next-routine-issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+11:00')
+    nritl = datetime.strptime(precis_data.getElementsByTagName('next-routine-issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S%z')
     # if current time is after next due update
     if img_ID > nritl:
         # Download and save weather forecast
@@ -93,7 +93,7 @@ precis_data = minidom.parse(precis_xml)
 # find all 'area' tags
 precis_areas = precis_data.getElementsByTagName('area')
 # extract issue-date/time
-forecast_ID = datetime.strptime(precis_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+11:00')
+forecast_ID = datetime.strptime(precis_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S%z')
 # for each area tag found 
 for area in precis_areas:
     # if it's for gosford
@@ -185,7 +185,7 @@ bom.quit()
 # 
 obs_xml = open('IDN60920.xml', 'rt')
 obs_data = minidom.parse(obs_xml)
-obs_ID = datetime.strptime(obs_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S+11:00')
+obs_ID = datetime.strptime(obs_data.getElementsByTagName('issue-time-local')[0].firstChild.nodeValue, '%Y-%m-%dT%H:%M:%S%z')
 obs_stations = obs_data.getElementsByTagName('station')
 for station in obs_stations:
     if station.getAttribute('description') == 'Canterbury':
