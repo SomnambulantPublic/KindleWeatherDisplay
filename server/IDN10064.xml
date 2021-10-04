@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<product version="1.7" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.bom.gov.au/schema/v1.7/product.xsd">
+    <amoc>
+        <source>
+            <sender>Australian Government Bureau of Meteorology</sender>
+            <region>New South Wales</region>
+            <office>NSWRO</office>
+            <copyright>http://www.bom.gov.au/other/copyright.shtml</copyright>
+            <disclaimer>http://www.bom.gov.au/other/disclaimer.shtml</disclaimer>
+        </source>
+        <identifier>IDN10064</identifier>
+        <issue-time-utc>2021-10-04T05:20:00Z</issue-time-utc>
+        <issue-time-local tz="EDT">2021-10-04T16:20:00+11:00</issue-time-local>
+        <sent-time>2021-10-04T05:20:10Z</sent-time>
+        <expiry-time>2021-10-14T05:20:00Z</expiry-time>
+        <validity-bgn-time-local tz="EDT">2021-10-04T16:20:10+11:00</validity-bgn-time-local>
+        <validity-end-time-local tz="EDT">2021-10-11T23:59:59+11:00</validity-end-time-local>
+        <next-routine-issue-time-utc>2021-10-04T17:45:00Z</next-routine-issue-time-utc>
+        <next-routine-issue-time-local tz="EDT">2021-10-05T04:45:00+11:00</next-routine-issue-time-local>
+        <status>O</status>
+        <service>WSP</service>
+        <sub-service>FCT</sub-service>
+        <product-type>F</product-type>
+        <phase>NEW</phase>
+    </amoc>
+    <forecast>
+        <area aac="NSW_FA001" description="New South Wales" type="region">
+            <forecast-period start-time-local="2021-10-04T16:20:10+11:00" end-time-local="2021-10-04T16:20:10+11:00" start-time-utc="2021-10-04T05:20:10Z" end-time-utc="2021-10-04T05:20:10Z">
+                <text type="warning_summary_footer">For latest warnings go to www.bom.gov.au, subscribe to RSS feeds, call 1300 659 210* or listen for warnings on relevant TV and radio broadcasts.</text>
+                <text type="product_footer">* Calls to 1300 numbers cost around 27.5c incl. GST, higher from mobiles or public phones.</text>
+            </forecast-period>
+        </area>
+        <area aac="NSW_ME001" description="Sydney" type="metropolitan" parent-aac="NSW_FA001">
+            <forecast-period index="0" start-time-local="2021-10-04T17:00:00+11:00" end-time-local="2021-10-05T00:00:00+11:00" start-time-utc="2021-10-04T06:00:00Z" end-time-utc="2021-10-04T13:00:00Z">
+                <text type="forecast">Clear. Winds westerly 15 to 25 km/h becoming light in the late evening.</text>
+            </forecast-period>
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <text type="forecast">Mostly sunny. Winds westerly 25 to 35 km/h.</text>
+                <text type="fire_danger">High</text>
+                <text type="uv_alert">Sun protection 9:40am to 3:40pm, UV Index predicted to reach 6 [High]</text>
+            </forecast-period>
+            <forecast-period index="2" start-time-local="2021-10-06T00:00:00+11:00" end-time-local="2021-10-07T00:00:00+11:00" start-time-utc="2021-10-05T13:00:00Z" end-time-utc="2021-10-06T13:00:00Z">
+                <text type="forecast">Sunny. Winds westerly 15 to 25 km/h shifting easterly 20 to 30 km/h in the early afternoon then becoming light in the late evening.</text>
+            </forecast-period>
+            <forecast-period index="3" start-time-local="2021-10-07T00:00:00+11:00" end-time-local="2021-10-08T00:00:00+11:00" start-time-utc="2021-10-06T13:00:00Z" end-time-utc="2021-10-07T13:00:00Z">
+                <text type="forecast">Partly cloudy. Slight (30%) chance of a shower. Winds north to northwesterly and light increasing to 15 to 25 km/h during the morning then shifting southwesterly 25 to 35 km/h during the afternoon.</text>
+            </forecast-period>
+            <forecast-period index="4" start-time-local="2021-10-08T00:00:00+11:00" end-time-local="2021-10-09T00:00:00+11:00" start-time-utc="2021-10-07T13:00:00Z" end-time-utc="2021-10-08T13:00:00Z">
+                <text type="forecast">Sunny. Light winds becoming east to northeasterly 15 to 25 km/h during the afternoon then becoming light during the evening.</text>
+            </forecast-period>
+            <forecast-period index="5" start-time-local="2021-10-09T00:00:00+11:00" end-time-local="2021-10-10T00:00:00+11:00" start-time-utc="2021-10-08T13:00:00Z" end-time-utc="2021-10-09T13:00:00Z">
+                <text type="forecast">Sunny. Light winds.</text>
+            </forecast-period>
+            <forecast-period index="6" start-time-local="2021-10-10T00:00:00+11:00" end-time-local="2021-10-11T00:00:00+11:00" start-time-utc="2021-10-09T13:00:00Z" end-time-utc="2021-10-10T13:00:00Z">
+                <text type="forecast">Partly cloudy. Medium (40%) chance of showers. Winds westerly 15 to 25 km/h turning southerly later.</text>
+            </forecast-period>
+            <forecast-period index="7" start-time-local="2021-10-11T00:00:00+11:00" end-time-local="2021-10-12T00:00:00+11:00" start-time-utc="2021-10-10T13:00:00Z" end-time-utc="2021-10-11T13:00:00Z">
+                <text type="forecast">Cloudy. Medium (60%) chance of showers. Winds south to southwesterly 15 to 20 km/h turning southeasterly 20 to 30 km/h during the morning.</text>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT131" description="Sydney" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="0" start-time-local="2021-10-04T17:00:00+11:00" end-time-local="2021-10-05T00:00:00+11:00" start-time-utc="2021-10-04T06:00:00Z" end-time-utc="2021-10-04T13:00:00Z">
+                <element type="forecast_icon_code">2</element>
+                <text type="precis">Clear.</text>
+                <text type="probability_of_precipitation">0%</text>
+            </forecast-period>
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="forecast_icon_code">3</element>
+                <element type="air_temperature_minimum" units="Celsius">13</element>
+                <element type="air_temperature_maximum" units="Celsius">23</element>
+                <text type="precis">Mostly sunny.</text>
+                <text type="probability_of_precipitation">0%</text>
+            </forecast-period>
+            <forecast-period index="2" start-time-local="2021-10-06T00:00:00+11:00" end-time-local="2021-10-07T00:00:00+11:00" start-time-utc="2021-10-05T13:00:00Z" end-time-utc="2021-10-06T13:00:00Z">
+                <element type="forecast_icon_code">1</element>
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">24</element>
+                <text type="precis">Sunny.</text>
+                <text type="probability_of_precipitation">5%</text>
+            </forecast-period>
+            <forecast-period index="3" start-time-local="2021-10-07T00:00:00+11:00" end-time-local="2021-10-08T00:00:00+11:00" start-time-utc="2021-10-06T13:00:00Z" end-time-utc="2021-10-07T13:00:00Z">
+                <element type="forecast_icon_code">3</element>
+                <element type="precipitation_range">0 to 0.2 mm</element>
+                <element type="air_temperature_minimum" units="Celsius">13</element>
+                <element type="air_temperature_maximum" units="Celsius">26</element>
+                <text type="precis">Partly cloudy.</text>
+                <text type="probability_of_precipitation">30%</text>
+            </forecast-period>
+            <forecast-period index="4" start-time-local="2021-10-08T00:00:00+11:00" end-time-local="2021-10-09T00:00:00+11:00" start-time-utc="2021-10-07T13:00:00Z" end-time-utc="2021-10-08T13:00:00Z">
+                <element type="forecast_icon_code">3</element>
+                <element type="air_temperature_minimum" units="Celsius">12</element>
+                <element type="air_temperature_maximum" units="Celsius">22</element>
+                <text type="precis">Mostly sunny.</text>
+                <text type="probability_of_precipitation">10%</text>
+            </forecast-period>
+            <forecast-period index="5" start-time-local="2021-10-09T00:00:00+11:00" end-time-local="2021-10-10T00:00:00+11:00" start-time-utc="2021-10-08T13:00:00Z" end-time-utc="2021-10-09T13:00:00Z">
+                <element type="forecast_icon_code">1</element>
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">25</element>
+                <text type="precis">Sunny.</text>
+                <text type="probability_of_precipitation">5%</text>
+            </forecast-period>
+            <forecast-period index="6" start-time-local="2021-10-10T00:00:00+11:00" end-time-local="2021-10-11T00:00:00+11:00" start-time-utc="2021-10-09T13:00:00Z" end-time-utc="2021-10-10T13:00:00Z">
+                <element type="forecast_icon_code">17</element>
+                <element type="precipitation_range">0 to 0.4 mm</element>
+                <element type="air_temperature_minimum" units="Celsius">14</element>
+                <element type="air_temperature_maximum" units="Celsius">26</element>
+                <text type="precis">Possible shower.</text>
+                <text type="probability_of_precipitation">40%</text>
+            </forecast-period>
+            <forecast-period index="7" start-time-local="2021-10-11T00:00:00+11:00" end-time-local="2021-10-12T00:00:00+11:00" start-time-utc="2021-10-10T13:00:00Z" end-time-utc="2021-10-11T13:00:00Z">
+                <element type="forecast_icon_code">11</element>
+                <element type="precipitation_range">0 to 5 mm</element>
+                <element type="air_temperature_minimum" units="Celsius">13</element>
+                <element type="air_temperature_maximum" units="Celsius">21</element>
+                <text type="precis">Shower or two.</text>
+                <text type="probability_of_precipitation">60%</text>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT114" description="Penrith" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="0" start-time-local="2021-10-04T17:00:00+11:00" end-time-local="2021-10-05T00:00:00+11:00" start-time-utc="2021-10-04T06:00:00Z" end-time-utc="2021-10-04T13:00:00Z">
+                <element type="forecast_icon_code">2</element>
+                <text type="precis">Clear.</text>
+                <text type="probability_of_precipitation">0%</text>
+            </forecast-period>
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="forecast_icon_code">3</element>
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">22</element>
+                <text type="precis">Partly cloudy.</text>
+                <text type="probability_of_precipitation">0%</text>
+            </forecast-period>
+            <forecast-period index="2" start-time-local="2021-10-06T00:00:00+11:00" end-time-local="2021-10-07T00:00:00+11:00" start-time-utc="2021-10-05T13:00:00Z" end-time-utc="2021-10-06T13:00:00Z">
+                <element type="forecast_icon_code">1</element>
+                <element type="air_temperature_minimum" units="Celsius">8</element>
+                <element type="air_temperature_maximum" units="Celsius">27</element>
+                <text type="precis">Sunny.</text>
+                <text type="probability_of_precipitation">5%</text>
+            </forecast-period>
+            <forecast-period index="3" start-time-local="2021-10-07T00:00:00+11:00" end-time-local="2021-10-08T00:00:00+11:00" start-time-utc="2021-10-06T13:00:00Z" end-time-utc="2021-10-07T13:00:00Z">
+                <element type="forecast_icon_code">3</element>
+                <element type="precipitation_range">0 to 0.2 mm</element>
+                <element type="air_temperature_minimum" units="Celsius">9</element>
+                <element type="air_temperature_maximum" units="Celsius">27</element>
+                <text type="precis">Partly cloudy.</text>
+                <text type="probability_of_precipitation">30%</text>
+            </forecast-period>
+            <forecast-period index="4" start-time-local="2021-10-08T00:00:00+11:00" end-time-local="2021-10-09T00:00:00+11:00" start-time-utc="2021-10-07T13:00:00Z" end-time-utc="2021-10-08T13:00:00Z">
+                <element type="forecast_icon_code">1</element>
+                <element type="air_temperature_minimum" units="Celsius">8</element>
+                <element type="air_temperature_maximum" units="Celsius">25</element>
+                <text type="precis">Sunny.</text>
+                <text type="probability_of_precipitation">5%</text>
+            </forecast-period>
+            <forecast-period index="5" start-time-local="2021-10-09T00:00:00+11:00" end-time-local="2021-10-10T00:00:00+11:00" start-time-utc="2021-10-08T13:00:00Z" end-time-utc="2021-10-09T13:00:00Z">
+                <element type="forecast_icon_code">1</element>
+                <element type="air_temperature_minimum" units="Celsius">8</element>
+                <element type="air_temperature_maximum" units="Celsius">30</element>
+                <text type="precis">Sunny.</text>
+                <text type="probability_of_precipitation">5%</text>
+            </forecast-period>
+            <forecast-period index="6" start-time-local="2021-10-10T00:00:00+11:00" end-time-local="2021-10-11T00:00:00+11:00" start-time-utc="2021-10-09T13:00:00Z" end-time-utc="2021-10-10T13:00:00Z">
+                <element type="forecast_icon_code">17</element>
+                <element type="precipitation_range">0 to 0.4 mm</element>
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">28</element>
+                <text type="precis">Possible shower.</text>
+                <text type="probability_of_precipitation">40%</text>
+            </forecast-period>
+            <forecast-period index="7" start-time-local="2021-10-11T00:00:00+11:00" end-time-local="2021-10-12T00:00:00+11:00" start-time-utc="2021-10-10T13:00:00Z" end-time-utc="2021-10-11T13:00:00Z">
+                <element type="forecast_icon_code">11</element>
+                <element type="precipitation_range">0 to 6 mm</element>
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">22</element>
+                <text type="precis">Shower or two.</text>
+                <text type="probability_of_precipitation">60%</text>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT082" description="Liverpool" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="air_temperature_minimum" units="Celsius">10</element>
+                <element type="air_temperature_maximum" units="Celsius">21</element>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT139" description="Terrey Hills" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">21</element>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT123" description="Richmond" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="air_temperature_minimum" units="Celsius">10</element>
+                <element type="air_temperature_maximum" units="Celsius">22</element>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT111" description="Parramatta" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="air_temperature_minimum" units="Celsius">11</element>
+                <element type="air_temperature_maximum" units="Celsius">22</element>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT026" description="Campbelltown" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="air_temperature_minimum" units="Celsius">9</element>
+                <element type="air_temperature_maximum" units="Celsius">21</element>
+            </forecast-period>
+        </area>
+        <area aac="NSW_PT237" description="Bondi" type="location" parent-aac="NSW_ME001">
+            <forecast-period index="1" start-time-local="2021-10-05T00:00:00+11:00" end-time-local="2021-10-06T00:00:00+11:00" start-time-utc="2021-10-04T13:00:00Z" end-time-utc="2021-10-05T13:00:00Z">
+                <element type="air_temperature_minimum" units="Celsius">14</element>
+                <element type="air_temperature_maximum" units="Celsius">20</element>
+            </forecast-period>
+        </area>
+    </forecast>
+</product>
